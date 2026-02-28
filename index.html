@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGC Valet | Clean Getaway Custom Valet</title>  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+      background: none;
+    }
+
+    /* FIXED FULL BACKGROUND */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('full-background.png') no-repeat center center;
+      background-size: cover;
+      z-index: -3;
+      filter: saturate(140%) contrast(120%) brightness(1.05);
+    }
+
+    /* PAGE OVERLAY */
+    .page-overlay {
+      min-height: 100vh;
+      background: linear-gradient(
+        rgba(0,0,0,0.32),
+        rgba(0,0,0,0.55)
+      );
+      position: relative;
+      z-index: 0;
+    }
+
+    /* HEADER / LOGO */
+    header {
+      min-height: 300px;
+      padding: 40px 0 60px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      position: relative;
+      z-index: 20;
+      overflow: visible;
+    }
+
+    .logo-img {
+      width: min(90vw, 420px);
+      max-width: 420px;
+      min-width: 320px;
+      height: auto;
+      object-fit: contain;
+      transform: translateY(-30px);
+      display: block;
+    }
+
+    /* AD IMAGE */
+    .ad-wrap {
+      text-align: center;
+      margin-top: -95px; /* move site up a couple more notches */ /* move site content up */
+      position: relative;
+      z-index: 10;
+    }
+
+    .ad-img {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      display: block;
+      border-radius: 18px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .ad-img::before,
+    .ad-img::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 30%;
+      pointer-events: none;
+    }
+
+    .ad-img::before {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(37,99,235,0.65), rgba(37,99,235,0));
+      border-radius: 18px 18px 0 0;
+    }
+
+    .ad-img::after {
+      bottom: 0;
+      background: linear-gradient(to top, rgba(37,99,235,0.65), rgba(37,99,235,0));
+      border-radius: 0 0 18px 18px;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: -260px auto 0; /* move site up a couple more notches */ /* move site content up */ /* moved up a few notches */
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 15;
+    }
+
+    /* BLUE PILL HEADERS — TEXT GUARANTEED TO FIT */
+    h2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+      margin: 50px auto;
+      padding: 16px 22px;
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 45%, #1e40af 100%);
+      border-radius: 999px;
+      font-size: clamp(1.1rem, 3.6vw, 1.8rem);
+      text-align: center;
+      color: #ffffff;
+      box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.35),
+        inset 0 -4px 0 rgba(0,0,0,0.45),
+        0 10px 25px rgba(0,0,0,0.6),
+        0 0 20px rgba(37,99,235,0.7);
+      border: 1px solid rgba(255,255,255,0.25);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    /* Move ONLY Our Services down slightly */
+    .services-section h2 {
+      margin-top: 130px; /* move OUR SERVICES down several notches */
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      justify-items: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 28px;
+      border-radius: 20px;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .price {
+      margin-top: 16px; /* price sits underneath all text */
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #22c55e;
+    }
+
+    /* CTA */
+    .cta {
+      margin-top: 0; /* moved up slightly */
+      padding: 40px 20px 60px;
+      text-align: center;
+      position: relative;
+      z-index: 15;
+    }
+
+    .cta p {
+      margin: 20px auto 24px;
+      max-width: 520px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      background: linear-gradient(180deg, #22c55e, #16a34a);
+      color: #052e16;
+      font-weight: bold;
+      border-radius: 999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    }
+
+    /* CONTACT */
+    .contact {
+      max-width: 700px;
+      margin: -80px auto 60px; /* moved up slightly */
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 15;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(17,24,39,0.8);
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: 0 0 8px rgba(255,255,255,0.35);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: -40px; /* lift footer slightly */
+    }
+
+    @media (max-width: 600px) {
+      header { min-height: 220px; }
+      .logo-img { width: min(95vw, 360px); transform: translateY(-10px); }
+    }
+  </style></head>
+<body><div class="page-overlay">  <header>
+    <img src="logo.png" alt="CGC Valet Logo" class="logo-img" />
+  </header>  <div class="ad-wrap">
+    <img src="ad-image.png" alt="CGC Valet Advertisement" class="ad-img" />
+  </div>  <section class="services-section">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="card"><h3>Exterior Wash</h3><p class="price">£££</p><p>Safe wash, wheels cleaned, tyres dressed.</p></div>
+      <div class="card"><h3>Interior Valet</h3><p class="price">£££</p><p>Full vacuum, plastics cleaned, glass polished.</p></div>
+      <div class="card"><h3>Full Valet</h3><p class="price">£££</p><p>Inside and out. From filthy to finished.</p></div>
+      <div class="card"><h3>Custom Cleans</h3><p class="price">£££</p><p>Pet hair, vans, deep cleans.</p></div>
+    </div>
+  </section>  <section class="cta">
+    <h2>Book Your Clean Getaway</h2>
+    <p>Mobile service available. Message now for availability & prices.</p>
+    <a class="btn" href="tel:YOURNUMBER">Call or Message</a>
+  </section>  <section class="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+      <input placeholder="Your name" />
+      <input placeholder="Your email" />
+      <textarea placeholder="Your message"></textarea>
+      <button class="btn">Send</button>
+    </form>
+  </section>  <footer>© 2026 CGC Valet – Clean Getaway Custom Valet</footer></div>
+</body>
+</html>
